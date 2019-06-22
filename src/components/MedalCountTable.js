@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import './MedalCountTable.css';
+import PropTypes from 'prop-types';
 import CountryMedalCountContainer from './CountryMedalCountContainer';
 import ErrorMessage from './ErrorMessage';
 
-function MedalCountTable() {
+function MedalCountTable({ initialSort }) {
   const medalDataUrl = 'https://s3-us-west-2.amazonaws.com/reuters.medals-widget/medals.json';
   const [medalData, setMedalData] = useState([]);
   const [error, setError] = useState(null);
-  const [activeTab, setActiveTab] = useState('gold');
+  const [activeTab, setActiveTab] = useState(initialSort);
   const medalTabs = ['gold', 'silver', 'bronze', 'total'];
 
   function sortMedalData(medalDataResponse, sortType) {
@@ -30,7 +31,7 @@ function MedalCountTable() {
   }
 
   async function getMedalData() {
-    const defaultSortType = 'gold';
+    // const defaultSortType = 'gold';
     let response;
     setError(null);
     try {
@@ -40,7 +41,7 @@ function MedalCountTable() {
       return setError(errorMessage);
     }
     const medalDataResponse = await response.json();
-    const sortedMedalData = sortMedalData(medalDataResponse, defaultSortType);
+    const sortedMedalData = sortMedalData(medalDataResponse, initialSort);
     return setMedalData(sortedMedalData);
   }
 
@@ -101,5 +102,13 @@ function MedalCountTable() {
     </div>
   );
 }
+
+MedalCountTable.propTypes = {
+  initialSort: PropTypes.string,
+};
+
+MedalCountTable.defaultProps = {
+  initialSort: 'gold',
+};
 
 export default MedalCountTable;

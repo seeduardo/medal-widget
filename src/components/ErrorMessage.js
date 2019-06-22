@@ -1,3 +1,4 @@
+/* eslint react/forbid-prop-types: "off" */
 import React from 'react';
 import './MedalCountTable.css';
 import PropTypes from 'prop-types';
@@ -15,7 +16,7 @@ function ErrorMessage({ error }) {
 }
 
 ErrorMessage.propTypes = {
-  error: PropTypes.string,
+  error: PropTypes.object,
 };
 
 ErrorMessage.defaultProps = {
