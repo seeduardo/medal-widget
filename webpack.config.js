@@ -85,12 +85,4 @@ module.exports = [{
     libraryExport: 'default',
     libraryTarget: 'window',
   },
-}, {
-  ...defaultConfig,
-  entry: './src/outputs/bookmarklet.js',
-  output: {
-    path: distDir,
-    publicPath: '/',
-    filename: 'bookmarklet.js',
-  },
 }];
