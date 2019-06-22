@@ -80,7 +80,7 @@ module.exports = [{
   output: {
     path: distDir,
     publicPath: '/',
-    filename: 'widget.js',
+    filename: 'medal-widget.js',
     library: 'EmbeddableWidget',
     libraryExport: 'default',
     libraryTarget: 'window',
