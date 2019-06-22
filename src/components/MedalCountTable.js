@@ -31,13 +31,10 @@ function MedalCountTable({ initialSort }) {
   }
 
   async function getMedalData() {
-    // const defaultSortType = 'gold';
     let response;
-    setError(null);
     try {
       response = await fetch(medalDataUrl);
     } catch (errorMessage) {
-      // console.log(`${error} --- please check your internet connection.`);
       return setError(errorMessage);
     }
     const medalDataResponse = await response.json();
@@ -96,8 +93,9 @@ function MedalCountTable({ initialSort }) {
         )}
       </div>
       <div className="medal-count">
-        <CountryMedalCountContainer medalData={medalData} />
-        <ErrorMessage error={error} />
+        {!error
+          ? <CountryMedalCountContainer medalData={medalData} />
+          : <ErrorMessage error={error} />}
       </div>
     </div>
   );
