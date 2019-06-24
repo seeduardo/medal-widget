@@ -34,6 +34,9 @@ function MedalCountTable({ initialSort }) {
     let response;
     try {
       response = await fetch(medalDataUrl);
+      if (!response.ok) {
+        return setError(true);
+      }
     } catch (errorMessage) {
       return setError(errorMessage);
     }
@@ -56,7 +59,7 @@ function MedalCountTable({ initialSort }) {
   }
 
   return (
-    <div className="MedalCountTable">
+    <div id="medal-widget" className="MedalCountTable">
       <div className="title">MEDAL COUNT</div>
       <div className="activity">
         {medalTabs.map(
@@ -106,7 +109,7 @@ MedalCountTable.propTypes = {
 };
 
 MedalCountTable.defaultProps = {
-  initialSort: 'gold',
+  initialSort: '',
 };
 
 export default MedalCountTable;

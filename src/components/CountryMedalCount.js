@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 import './MedalCountTable.css';
 
 function CountryMedalCount({
-  listPlace, cData,
+  listPlace, cData, flagUrlCode,
 }) {
-  const flagTilesUrl = `/flags/flag_tile_${cData.code}.png`;
+  const flagTilesUrl = `https://i.imgur.com/${flagUrlCode}.png`;
 
   return (
     <div className="CountryMedalCount">
@@ -24,11 +24,13 @@ function CountryMedalCount({
 CountryMedalCount.propTypes = {
   listPlace: PropTypes.number,
   cData: PropTypes.object,
+  flagUrlCode: PropTypes.string,
 };
 
 CountryMedalCount.defaultProps = {
   listPlace: '',
   cData: '',
+  flagUrlCode: '',
 };
 
 export default CountryMedalCount;
